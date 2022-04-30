@@ -1,0 +1,35 @@
+# Maintainer: Me
+
+# Adapted from https://aur.archlinux.org/packages/btrfs-assistant
+# PKGBUILD reference: https://docs.makedeb.org/makedeb/pkgbuild-syntax/
+
+pkgname=btrfs-assistant
+pkgver=1.4
+pkgrel=1
+pkgdesc="An application for managing BTRFS subvolumes and Snapper snapshots"
+arch=('amd64')
+# What polkit package should I add? polkitd?
+depends=(btrfs-progs qtbase5-dev fonts-noto libqt5svg5 libqt5core5a g++)
+makedepends=(git cmake qttools5-dev)
+optdepends=(snapper btrfsmaintenance)
+conflicts=(btrfs-assistant-git)
+backup=('/etc/btrfs-assistant.conf')
+#options=()
+license=('GPL3')
+url="https://gitlab.com/$pkgname/$pkgname"
+
+source=("$pkgname-$pkgver.tar.gz::$url/-/archive/$pkgver/$pkgname-$pkgver.tar.gz")
+sha256sums=('a4824c518118343343b14fdbcd7cf2477009baa359087772d83f65064f8f4f37')
+
+build() {
+    cd "${pkgname}-${pkgver}/"
+    cmake -B build -S . -DCMAKE_INSTALL_PREFIX=/usr -DCMAKE_BUILD_TYPE='Release'
+    make -C build
+}
+
+package() {
+    cd "${pkgname}-${pkgver}/"
+    make -C build DESTDIR="$pkgdir" install
+}
+
+# vim: set sw=4 expandtab:
