@@ -4,12 +4,12 @@
 # PKGBUILD reference: https://docs.makedeb.org/makedeb/pkgbuild-syntax/
 
 pkgname=btrfs-assistant
-pkgver=1.4
+pkgver=1.5
 pkgrel=1
 pkgdesc="An application for managing BTRFS subvolumes and Snapper snapshots"
 arch=('amd64')
 # What polkit package should I add? polkitd?
-depends=(btrfs-progs qtbase5-dev fonts-noto libqt5svg5 libqt5core5a g++)
+depends=(btrfs-progs qtbase5-dev fonts-noto libqt5svg5 libqt5core5a g++ libbtrfs-dev libbtrfsutil-dev)
 makedepends=(git cmake qttools5-dev)
 optdepends=(snapper btrfsmaintenance)
 conflicts=(btrfs-assistant-git)
@@ -19,7 +19,7 @@ license=('GPL3')
 url="https://gitlab.com/$pkgname/$pkgname"
 
 source=("$pkgname-$pkgver.tar.gz::$url/-/archive/$pkgver/$pkgname-$pkgver.tar.gz")
-sha256sums=('a4824c518118343343b14fdbcd7cf2477009baa359087772d83f65064f8f4f37')
+sha256sums=('08bc7846b80cf0fe1f63966f1d69e377f8486829737f9651ce0e1114da06b17b')
 
 build() {
     cd "${pkgname}-${pkgver}/"
