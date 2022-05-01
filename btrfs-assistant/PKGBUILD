@@ -8,13 +8,11 @@ pkgver=1.5
 pkgrel=1
 pkgdesc="An application for managing BTRFS subvolumes and Snapper snapshots"
 arch=('amd64')
-# What polkit package should I add? polkitd?
-depends=(btrfs-progs qtbase5-dev fonts-noto libqt5svg5 libqt5core5a g++ libbtrfs-dev libbtrfsutil-dev)
+depends=(polkitd btrfs-progs qtbase5-dev fonts-noto libqt5svg5 libqt5core5a g++ libbtrfs-dev libbtrfsutil-dev)
 makedepends=(git cmake qttools5-dev)
 optdepends=(snapper btrfsmaintenance)
 conflicts=(btrfs-assistant-git)
 backup=('/etc/btrfs-assistant.conf')
-#options=()
 license=('GPL3')
 url="https://gitlab.com/$pkgname/$pkgname"
 
